@@ -1,102 +1,7 @@
-// ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
-}
-
-enum Person { fName, lName, age }
-
-class Human {
-  final String name;
-
-  Human({required this.name}); // factory constructor
-  factory Human.defaultName() {
-    return Human(name: 'test');
-  }
-  void walk() {
-    print('$name is walking');
-  }
-
-  @override //override overloading abstract classes, inheritance Object
-  bool operator ==(covariant Human other) => other.name == name;
-
-  @override
-  int get hashCode => name.hashCode;
-}
-
-// add functionlities later
-extension Run on Human {
-  void run() {
-    print('$name is running');
-  }
-}
-
-//handle async tasks with async await Future
-Future<int> asyncFn(int a) {
-  return Future.delayed(const Duration(seconds: 3), () => a * a);
-}
-
-//handle async continous data Stream
-Stream<String> getName() {
-  return Stream.periodic(const Duration(seconds: 1), (val) => 'tes').take(3);
-}
-
-//Generator function to return list of things but internally calculate data
-Iterable<int> getList() sync* {
-  yield 1;
-  yield 2;
-  yield 3;
-}
-
-//Generics
-class Pair<A, B> {
-  final A one;
-  final B two;
-
-  Pair({required this.one, required this.two});
-}
-
-void test() async {
-  var name = 'test';
-  print(name * 100);
-  var names = <String>['te', 'teds', 'sadsd'];
-  names.sort((a, b) => a.compareTo(b));
-  print(names);
-  var person = {'age': 12, 'name': 'asd'};
-  print(person['ag']);
-
-  List<String?>? ls = ['one', 'two', null]; // null safety
-  ls[2] ??= 'three'; // null aware, null coalscing v1??v2
-  //conditional invocation ?.?.
-  print(ls);
-
-  print(Person.values);
-
-  Human p = Human(name: 'lol');
-  Human p2 = Human.defaultName();
-  Human p3 = Human(name: 'test');
-  p.walk();
-  p2.walk();
-  print(p == p2 ? 'same ${p.hashCode}' : 'not same ${p2.hashCode}');
-  print(p3 == p2 ? 'same' : 'not same');
-  p3.run();
-
-  var del = await (asyncFn(12)); // async handler
-  print(del);
-
-  await for (var value in getName()) {
-    //stream handler
-    print(value);
-  }
-
-  for (var value in getList()) {
-    print(value);
-  }
-
-  final na = Pair(one: 'foo', two: 'bar');
-  print(na.one);
 }
 
 class MyApp extends StatelessWidget {
@@ -105,7 +10,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    test();
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -124,7 +28,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
