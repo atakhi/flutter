@@ -8,7 +8,7 @@ const colorsArr = [
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       home: Scaffold(
         body: GradientContainer(
           colorsArr: colorsArr,
